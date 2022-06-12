@@ -10,7 +10,7 @@ const App: React.FC = () => {
 
   const dashboard: JSX.Element = (
     <ContactsProvider>
-      <ConversationsProvider>
+      <ConversationsProvider id={id}>
         <Dashboard id={id} />
       </ConversationsProvider>
     </ContactsProvider>

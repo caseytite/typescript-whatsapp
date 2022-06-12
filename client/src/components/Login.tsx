@@ -28,9 +28,11 @@ const Login: React.FC<LoginProps> = ({ setId }) => {
       style={{ height: "100vh" }}
     >
       <Form className="w-100" onSubmit={handleSubmit}>
-        <Form.Label>Enter your Id</Form.Label>
-        <Form.Control type={"text"} ref={idRef} required />
-        <Button type={"submit"} className="me-2 mt-2">
+        <Form.Group>
+          <Form.Label>Enter your Id</Form.Label>
+          <Form.Control type={"text"} ref={idRef} required />
+        </Form.Group>
+        <Button type={"submit"} className="mr-2">
           Login
         </Button>
         <Button variant="secondary" onClick={createNewId} className="mt-2">

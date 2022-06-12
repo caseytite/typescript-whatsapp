@@ -31,7 +31,10 @@ const Sidebar: React.FC<SidebarProps> = ({ id }) => {
             <Nav.Link eventKey={contactKey}>Contacts</Nav.Link>
           </Nav.Item>
         </Nav>
-        <Tab.Content className="border-right over-flow-auto flex-grow-1">
+        <Tab.Content
+          className="border-right overflow-auto flex-grow-1 "
+          style={{ borderRight: "1px solid lightgrey" }}
+        >
           <Tab.Pane eventKey={convoKey}>
             <Conversations />
           </Tab.Pane>

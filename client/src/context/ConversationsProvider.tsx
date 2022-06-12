@@ -8,6 +8,7 @@ const ConversationsContext = createContext<any>(null);
 
 interface ConPro {
   children: ReactNode;
+  id?: number;
 }
 
 interface OutputValue {

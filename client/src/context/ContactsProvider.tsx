@@ -6,13 +6,14 @@ const ContactsContext = createContext<any>(null);
 
 interface ConPro {
   children: ReactNode;
+  id?: number;
 }
 
 export const useContacts: () => any = () => {
   return useContext<any>(ContactsContext);
 };
 
-export const ContactsProvider: React.FC<ConPro> = ({ children }) => {
+export const ContactsProvider: React.FC<ConPro> = ({ children, id }) => {
   const [contacts, setContacts] = useLocalStorage("contacts", []);
 
   const createContact: (id: string, name: string) => void = (id, name) => {
