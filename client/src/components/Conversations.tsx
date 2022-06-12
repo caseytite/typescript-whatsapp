@@ -1,11 +1,20 @@
 import { ListGroup } from "react-bootstrap";
-import { Convo, useConversations } from "../context/ConversationsProvider";
+import { useConversations } from "../context/ConversationsProvider";
+import { Convo } from "../types/types";
 
 const Conversations = () => {
-  const { conversations } = useConversations();
+  const { conversations, selectConversationIndex } = useConversations();
+
+  // const selectConversationIndex: (i: number) => void = (i) => {};
+
   const convo: JSX.Element[] = conversations.map(
-    (conversation: Convo, index: number) => (
-      <ListGroup.Item key={index}>
+    (conversation: Convo, i: number) => (
+      <ListGroup.Item
+        key={i}
+        action
+        active={conversation.selected}
+        onClick={() => selectConversationIndex(i)}
+      >
         {conversation.recipients.map((r: any) => r.name).join(", ")}
       </ListGroup.Item>
     )

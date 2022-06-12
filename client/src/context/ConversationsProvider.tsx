@@ -1,26 +1,20 @@
 import { useContext, createContext, ReactNode } from "react";
-import React from "react";
+import { useState } from "react";
 import useLocalStorage from "../hooks/useLocalStorage";
 import { useContacts } from "./ContactsProvider";
-import { Contact } from "../types/types";
+import { Recipient, Contact, Convo } from "../types/types";
 
 const ConversationsContext = createContext<any>(null);
 
 interface ConPro {
   children: ReactNode;
 }
-export type Convo = {
-  id: string;
-  recipients: string[];
-  messages: string[];
-};
+
 interface OutputValue {
   conversations: JSX.Element[];
   createConversation: (recipients: []) => void;
-}
-export interface Recipient {
-  name: string;
-  id: string;
+  selectConversationIndex: React.Dispatch<React.SetStateAction<number>>;
+  selectedConversation: JSX.Element;
 }
 
 export const useConversations: () => any = () => {
@@ -32,6 +26,8 @@ export const ConversationsProvider: React.FC<ConPro> = ({ children }) => {
     "conversations",
     []
   );
+  const [selectConversationIndex, setSelectConversationIndex] =
+    useState<number>(0);
   const { contacts } = useContacts();
 
   const createConversation: (recipients: []) => void = (recipients) => {
@@ -41,19 +37,24 @@ export const ConversationsProvider: React.FC<ConPro> = ({ children }) => {
     ]);
   };
 
-  const formattedConvos: JSX.Element[] = conversations.map((convo: Convo) => {
-    const recipients = convo.recipients.map((recip: string) => {
-      const contact = contacts.find((contact: Contact) => {
-        return contact.id === recip;
+  const formattedConvos: JSX.Element[] = conversations.map(
+    (convo: Convo, index: number) => {
+      const recipients = convo.recipients.map((recip: string) => {
+        const contact = contacts.find((contact: Contact) => {
+          return contact.id === recip;
+        });
+        const name: string = (contact && contact.name) || recip;
+        return { id: recip, name };
       });
-      const name: string = (contact && contact.name) || recip;
-      return { id: recip, name };
-    });
-    return { ...conversations, recipients };
-  });
+      const selected = index === selectConversationIndex;
+      return { ...conversations, recipients, selected };
+    }
+  );
 
   const value: OutputValue = {
     conversations: formattedConvos,
+    selectedConversation: formattedConvos[selectConversationIndex],
+    selectConversationIndex: setSelectConversationIndex,
     createConversation,
   };
 

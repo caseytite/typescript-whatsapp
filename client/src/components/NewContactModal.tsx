@@ -1,9 +1,6 @@
 import React, { useRef, useState } from "react";
 import { Modal, Form, Button } from "react-bootstrap";
 import { useContacts } from "../context/ContactsProvider";
-import { useConversations } from "../context/ConversationsProvider";
-import { ConversationsProvider } from "../context/ConversationsProvider";
-import { Contact } from "../types/types";
 
 interface ModalProps {
   closeModal: () => void;
