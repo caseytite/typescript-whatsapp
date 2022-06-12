@@ -1,18 +1,25 @@
 import React, { useRef } from "react";
 import { Button, Container, Form } from "react-bootstrap";
-
+import { v4 as uuidV4 } from "uuid";
 interface LoginProps {
-  setId: React.Dispatch<React.SetStateAction<number>>;
+  setId: React.Dispatch<React.SetStateAction<string | null>>;
 }
 
-const Login: React.FC<LoginProps> = () => {
-  const idRef = useRef<HTMLInputElement>(null);
+const Login: React.FC<LoginProps> = ({ setId }) => {
+  let idRef = useRef<HTMLInputElement>(null);
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     if (idRef.current?.value) {
-      console.log(idRef.current.value);
-      return;
+      setId(idRef.current.value);
+      idRef.current.value = "";
+    }
+  };
+
+  const createNewId = () => {
+    if (idRef.current?.value) {
+      setId(uuidV4());
+      idRef.current.value = "";
     }
   };
   return (
@@ -26,7 +33,9 @@ const Login: React.FC<LoginProps> = () => {
         <Button type={"submit"} className="mn-2">
           Login
         </Button>
-        <Button variant="secondary">Create an ID</Button>
+        <Button variant="secondary" onClick={createNewId}>
+          Create an ID
+        </Button>
       </Form>
     </Container>
   );
