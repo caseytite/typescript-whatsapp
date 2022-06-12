@@ -1,5 +1,6 @@
 import { useRef } from "react";
 import { Modal, Form, Button } from "react-bootstrap";
+import { useContacts } from "../context/ContactsProvider";
 
 interface ModalProps {
   closeModal: () => void;
@@ -8,9 +9,15 @@ interface ModalProps {
 const NewContactModal: React.FC<ModalProps> = ({ closeModal }) => {
   const idRef = useRef<HTMLInputElement>(null);
   const nameRef = useRef<HTMLInputElement>(null);
+  const { createContact } = useContacts();
 
   const handleSubmit: (e: React.FormEvent<HTMLFormElement>) => void = (e) => {
     e.preventDefault();
+
+    if (idRef.current?.value && nameRef.current?.value) {
+      createContact(idRef.current.value, nameRef.current.value);
+      closeModal();
+    }
   };
   return (
     <>

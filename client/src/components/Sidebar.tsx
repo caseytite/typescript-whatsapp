@@ -17,7 +17,7 @@ const Sidebar: React.FC<SidebarProps> = ({ id }) => {
   const convoOpen = activeKey === convoKey;
 
   const closeModal: () => void = () => {
-    setModalOpen((prev) => !prev);
+    setModalOpen((prev: boolean) => !prev);
   };
 
   return (
@@ -44,7 +44,7 @@ const Sidebar: React.FC<SidebarProps> = ({ id }) => {
         </div>
         <Button
           className="rounded-0"
-          onClick={() => setModalOpen((prev) => !prev)}
+          onClick={() => setModalOpen((prev: boolean) => !prev)}
         >
           New {convoOpen ? "Conversation" : "Contact"}
         </Button>
