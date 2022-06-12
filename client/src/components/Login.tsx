@@ -30,10 +30,10 @@ const Login: React.FC<LoginProps> = ({ setId }) => {
       <Form className="w-100" onSubmit={handleSubmit}>
         <Form.Label>Enter your Id</Form.Label>
         <Form.Control type={"text"} ref={idRef} required />
-        <Button type={"submit"} className="mn-2">
+        <Button type={"submit"} className="me-2 mt-2">
           Login
         </Button>
-        <Button variant="secondary" onClick={createNewId}>
+        <Button variant="secondary" onClick={createNewId} className="mt-2">
           Create an ID
         </Button>
       </Form>

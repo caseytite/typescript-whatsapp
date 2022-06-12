@@ -1,23 +1,28 @@
 import { useState, useEffect } from "react";
 
-const PREFIX = "whatsapp";
+const PREFIX: string = "whatsapp";
 
-const useLocalStorage = (key?: string, initialValue?: () => void) => {
+const useLocalStorage = (
+  key?: string,
+  initialValue?: React.Dispatch<React.SetStateAction<string | null>>
+) => {
   const specailKey = `${PREFIX}${key}`;
-  const [value, setValue] = useState<() => void>(() => {
+  const [value, setValue] = useState(() => {
     const jsonValue = localStorage.getItem(specailKey);
     if (jsonValue !== null) {
       return JSON.parse(jsonValue);
     }
     if (typeof initialValue === "function") {
-      return initialValue();
+      return initialValue(null);
     } else {
       return initialValue;
     }
   });
 
   useEffect(() => {
-    localStorage.setItem(specailKey, JSON.stringify(value));
+    if (value !== undefined) {
+      localStorage.setItem(specailKey, JSON.stringify(value));
+    }
   }, [specailKey, value]);
 
   return [value, setValue];
