@@ -4,7 +4,11 @@ interface DashboardProps {
 }
 
 const Dashboard: React.FC<DashboardProps> = ({ id }) => {
-  return <SideBar id={id} />;
+  return (
+    <div className="d-flex " style={{ height: "100vh" }}>
+      <SideBar id={id} />
+    </div>
+  );
 };
 
 export default Dashboard;
