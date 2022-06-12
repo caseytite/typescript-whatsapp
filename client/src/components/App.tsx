@@ -2,6 +2,7 @@ import useLocalStorage from "../hooks/useLocalStorage";
 import Login from "./Login";
 import Dashboard from "./Dashboard";
 import { ContactsProvider } from "../context/ContactsProvider";
+import { ConversationsProvider } from "../context/ConversationsProvider";
 
 const App: React.FC = () => {
   // const [id, setId] = useState<string | null>(null);
@@ -9,7 +10,9 @@ const App: React.FC = () => {
 
   const dashboard: JSX.Element = (
     <ContactsProvider>
-      <Dashboard id={id} />
+      <ConversationsProvider>
+        <Dashboard id={id} />
+      </ConversationsProvider>
     </ContactsProvider>
   );
   return id ? dashboard : <Login setId={setId} />;

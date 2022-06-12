@@ -1,11 +1,7 @@
 import React from "react";
 import { useContacts } from "../context/ContactsProvider";
 import { ListGroup } from "react-bootstrap";
-
-interface Contact {
-  id: string;
-  name: string;
-}
+import { Contact } from "../types/types";
 
 const Contacts: React.FC = () => {
   const { contacts } = useContacts();
