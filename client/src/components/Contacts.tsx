@@ -1,4 +1,3 @@
-import React from "react";
 import { useContacts } from "../context/ContactsProvider";
 import { ListGroup } from "react-bootstrap";
 import { Contact } from "../types/types";

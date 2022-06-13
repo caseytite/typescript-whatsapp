@@ -1,14 +1,14 @@
-export interface Contact {
+export type Contact = {
   id: string;
   name: string;
-}
+};
 export type Convo = {
   id: string;
   recipients: string[];
   messages: string[];
   selected: boolean;
 };
-export interface Recipient {
+export type Recipient = {
   name: string;
   id: string;
-}
+};

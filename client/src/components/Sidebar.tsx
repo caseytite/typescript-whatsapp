@@ -42,7 +42,10 @@ const Sidebar: React.FC<SidebarProps> = ({ id }) => {
             <Contacts />
           </Tab.Pane>
         </Tab.Content>
-        <div className="p-2 border-top border-right small">
+        <div
+          className="p-2 border-top small"
+          style={{ borderRight: "1px solid lightgrey" }}
+        >
           Your Id: <span className="text-muted">{id}</span>
         </div>
         <Button

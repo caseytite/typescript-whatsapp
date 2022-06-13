@@ -5,8 +5,6 @@ import { Convo } from "../types/types";
 const Conversations = () => {
   const { conversations, selectConversationIndex } = useConversations();
 
-  // const selectConversationIndex: (i: number) => void = (i) => {};
-
   const convo: JSX.Element[] = conversations.map(
     (conversation: Convo, i: number) => (
       <ListGroup.Item

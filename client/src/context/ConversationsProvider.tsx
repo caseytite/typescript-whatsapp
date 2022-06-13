@@ -10,6 +10,11 @@ interface ConPro {
   children: ReactNode;
   id?: number;
 }
+type NewMessage = {
+  recipients: string[];
+  text: string;
+  sender: number;
+};
 
 interface OutputValue {
   conversations: JSX.Element[];
@@ -37,6 +42,8 @@ export const ConversationsProvider: React.FC<ConPro> = ({ children }) => {
       { recipients, messages: [] },
     ]);
   };
+
+  const addMessageToConversation: ({}: NewMessage) => void = (msg) => {};
 
   const formattedConvos: JSX.Element[] = conversations.map(
     (convo: Convo, index: number) => {
