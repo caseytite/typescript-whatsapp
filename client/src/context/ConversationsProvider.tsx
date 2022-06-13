@@ -2,13 +2,7 @@ import { useContext, createContext, ReactNode } from "react";
 import { useState } from "react";
 import useLocalStorage from "../hooks/useLocalStorage";
 import { useContacts } from "./ContactsProvider";
-import {
-  Recipient,
-  Contact,
-  Convo,
-  Message,
-  SendMessage,
-} from "../types/types";
+import { Recipient, Contact, Convo, Message } from "../types/types";
 
 const ConversationsContext = createContext<any>(null);
 
@@ -85,7 +79,6 @@ export const ConversationsProvider: React.FC<ConPro> = ({ children, id }) => {
   ) => {
     addMessageToConversation({ recipients, text, sender: id });
   };
-  //fix from here!
 
   const formattedConvos: [] = conversations.map(
     (convo: Convo, index: number) => {

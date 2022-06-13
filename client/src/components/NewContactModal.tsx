@@ -1,16 +1,18 @@
-import React, { useRef, useState } from "react";
+import React, { useRef } from "react";
 import { Modal, Form, Button } from "react-bootstrap";
 import { useContacts } from "../context/ContactsProvider";
-
+import { Contact } from "../types/types";
 interface ModalProps {
   closeModal: () => void;
 }
-
+// The modal that pops up when a users adds a contact
 const NewContactModal: React.FC<ModalProps> = ({ closeModal }) => {
-  const { createContact } = useContacts();
+  const { createContact }: { createContact: (contact: Contact) => void } =
+    useContacts();
   const idRef = useRef<HTMLInputElement>(null);
   const nameRef = useRef<HTMLInputElement>(null);
 
+  // Hanldles the submit of a new Contact
   const handleSubmit: (e: React.FormEvent<HTMLFormElement>) => void = (e) => {
     e.preventDefault();
 

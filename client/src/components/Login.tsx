@@ -8,6 +8,7 @@ interface LoginProps {
 const Login: React.FC<LoginProps> = ({ setId }) => {
   let idRef = useRef<HTMLInputElement>(null);
 
+  // Handles when a user logs is
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     if (idRef.current?.value) {
@@ -15,7 +16,7 @@ const Login: React.FC<LoginProps> = ({ setId }) => {
       idRef.current.value = "";
     }
   };
-
+  // Creates a new Id
   const createNewId = () => {
     if (idRef.current?.value) {
       setId(uuidV4());

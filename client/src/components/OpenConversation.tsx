@@ -6,11 +6,15 @@ import { Contact, Message } from "../types/types";
 const OpenConversation = () => {
   const [text, setText] = useState<string>("");
   const { sendMessage, selectedConversation } = useConversations();
+
+  // Scrolls the chat down to the last message
   const setRef = useCallback((node: any) => {
     if (node) {
       node.scrollIntoView({ smooth: true });
     }
   }, []);
+
+  // Sends the new message to the chat
   const handleSubmit: (e: React.FormEvent) => void = (e) => {
     e.preventDefault();
 
@@ -21,6 +25,7 @@ const OpenConversation = () => {
     setText("");
   };
 
+  // Maps the conversation messages and builds a JSX structure
   const convoMessages: JSX.Element[] = selectedConversation.messages.map(
     (message: Message, i: number) => {
       const lastMessage: boolean =

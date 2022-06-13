@@ -5,7 +5,7 @@ import { ContactsProvider } from "../context/ContactsProvider";
 import { ConversationsProvider } from "../context/ConversationsProvider";
 
 const App: React.FC = () => {
-  // const [id, setId] = useState<string | null>(null);
+  // Sets the users id into local storage
   const [id, setId] = useLocalStorage("id");
 
   const dashboard: JSX.Element = (

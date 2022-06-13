@@ -14,7 +14,7 @@ const contactKey: string = "contacts";
 const Sidebar: React.FC<SidebarProps> = ({ id }) => {
   const [activeKey, setActiveKey] = useState<any>(convoKey);
   const [modalOpen, setModalOpen] = useState<boolean>(false);
-  const convoOpen = activeKey === convoKey;
+  const convoOpen: boolean = activeKey === convoKey;
 
   const closeModal: () => void = () => {
     setModalOpen((prev: boolean) => !prev);
