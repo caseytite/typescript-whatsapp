@@ -15,7 +15,7 @@ const NewContactModal: React.FC<ModalProps> = ({ closeModal }) => {
     e.preventDefault();
 
     if (idRef.current?.value && nameRef.current?.value) {
-      createContact(idRef.current.value, nameRef.current.value);
+      createContact({ id: idRef.current.value, name: nameRef.current.value });
       closeModal();
     }
   };

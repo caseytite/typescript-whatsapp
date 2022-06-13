@@ -32,7 +32,7 @@ const Login: React.FC<LoginProps> = ({ setId }) => {
           <Form.Label>Enter your Id</Form.Label>
           <Form.Control type={"text"} ref={idRef} required />
         </Form.Group>
-        <Button type={"submit"} className="mr-2">
+        <Button type={"submit"} className="mr-2 mt-2">
           Login
         </Button>
         <Button variant="secondary" onClick={createNewId} className="mt-2">

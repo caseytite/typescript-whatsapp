@@ -5,10 +5,21 @@ export type Contact = {
 export type Convo = {
   id: string;
   recipients: string[];
-  messages: string[];
+  messages: Message[];
   selected: boolean;
 };
+export type Message = {
+  sender: string;
+  text: string;
+  senderName?: string;
+  fromMe?: boolean;
+};
+
+export type SendMessage = {
+  recipients: string[];
+  text: string;
+};
 export type Recipient = {
-  name: string;
-  id: string;
+  recipients: string[];
+  messages: Message[];
 };
