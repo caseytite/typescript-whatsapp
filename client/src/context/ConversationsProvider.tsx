@@ -1,8 +1,15 @@
-import { useContext, createContext, ReactNode } from "react";
+import {
+  useContext,
+  createContext,
+  ReactNode,
+  useEffect,
+  useCallback,
+} from "react";
 import { useState } from "react";
 import useLocalStorage from "../hooks/useLocalStorage";
 import { useContacts } from "./ContactsProvider";
 import { Recipient, Contact, Convo, Message } from "../types/types";
+import { useSocket } from "./SocketProvider";
 
 const ConversationsContext = createContext<any>(null);
 
@@ -36,6 +43,7 @@ export const ConversationsProvider: React.FC<ConPro> = ({ children, id }) => {
   const [selectConversationIndex, setSelectConversationIndex] =
     useState<number>(0);
   const { contacts } = useContacts();
+  const socket: any = useSocket();
 
   const createConversation: (recipients: []) => void = (recipients) => {
     setConversations((prev: Recipient[]) => [
@@ -73,10 +81,19 @@ export const ConversationsProvider: React.FC<ConPro> = ({ children, id }) => {
     });
   };
 
+  useEffect(() => {
+    if (socket === null) {
+      return;
+    }
+    socket.on("recieve-message", addMessageToConversation);
+    return socket.off("recieve-message");
+  }, [socket, addMessageToConversation]);
+
   const sendMessage: (recipients: string[], text: string) => void = (
     recipients,
     text
   ) => {
+    socket.emit("send-message", { recipients, text });
     addMessageToConversation({ recipients, text, sender: id });
   };
 
